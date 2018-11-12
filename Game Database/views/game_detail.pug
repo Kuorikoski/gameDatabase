@@ -1,0 +1,32 @@
+extends layout
+
+block content
+  h1 #{title}: #{game.title}
+  
+  p #[strong Game released:] #{game.lifespan}
+  p #[strong Developer:] 
+    a(href=game.developer.url) #{game.developer.name}
+  p #[strong Summary:] #{game.summary}
+  p #[strong Platform:]&nbsp;
+    each val, index in game.platform
+      a(href=val.url) #{val.name}
+      if index < game.platform.length - 1
+        |,
+  p #[strong Genre:]&nbsp;
+    each val, index in game.genre
+      a(href=val.url) #{val.name}
+      if index < game.genre.length - 1
+
+  p #[strong Game Engine:]&nbsp;
+    each val, index in game.engine
+      a(href=val.url) #{val.name}
+      if index < game.engine.length - 1
+	
+  
+
+	  
+  hr
+  p
+    a(href=game.url+'/delete') Delete Game
+  p
+    a(href=game.url+'/update') Update Game

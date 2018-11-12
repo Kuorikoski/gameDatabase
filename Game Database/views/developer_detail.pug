@@ -1,0 +1,32 @@
+extends layout
+
+block content
+
+  h1 Developer: #{developer.name}
+  p #[Strong Company Established:] #{developer.lifespan}
+  p #[Strong Location:] #{developer.location}
+
+  
+  div(style='margin-left:20px;margin-top:20px')
+
+    h4 Games
+    
+    dl
+      each game in developer_games
+        dt 
+          a(href=game.url) #{game.title}
+        dd #{game.summary}
+
+      else
+        p This developer has no games.
+		
+		
+  hr
+
+  p
+  
+    a(href=developer.url+'/delete') Delete developer
+
+  p
+    
+    a(href=developer.url+'/update') Update developer

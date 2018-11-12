@@ -1,0 +1,57 @@
+extends layout
+
+block content
+  h1= title
+
+  form(method='POST' action='')
+    div.form-group
+      label(for='title') Title:
+      input#title.form-control(type='text', placeholder='Name of game' name='title' required='true' value=(undefined===game ? '' : game.title) )
+    div.form-group
+      label(for='developer') Developer:
+      select#developer.form-control(type='select' placeholder='Select developer' name='developer' required='true' )
+        for developer in developers
+          if game
+            //- Handle GET form, where game.developer is an object, and POST form, where it is a string.
+            option(
+              value=developer._id
+              selected=(
+                developer._id.toString()==game.developer._id
+                || developer._id.toString()==game.developer
+              ) ? 'selected' : false
+            ) #{developer.name}
+          else
+            option(value=developer._id) #{developer.name}
+    div.form-group
+      label(for='summary') Summary:
+      input#summary.form-control(type='textarea', placeholder='Summary' name='summary' value=(undefined===game ? '' : game.summary) required='true')
+    div.form-group
+      label(for='date_of_birth') Release date:
+      input#date_of_birth.form-control(type='date' name='date_of_birth' value=(undefined===game ? '' : game.date_of_birth) )
+    div.form-group
+      label Platform:
+      div
+        for platform in platforms
+          div(style='display: inline; padding-right:10px;')
+            input.checkbox-input(type='checkbox', name='platform', id=platform._id, value=platform._id, checked=platform.checked )
+            label(for=platform._id) #{platform.name} 
+    div.form-group
+      label Genre:
+      div
+        for genre in genres
+          div(style='display: inline; padding-right:10px;')
+            input.checkbox-input(type='checkbox', name='genre', id=genre._id, value=genre._id, checked=genre.checked )
+            label(for=genre._id) #{genre.name}
+    div.form-group
+      label Engine:
+      div
+        for engine in engines
+          div(style='display: inline; padding-right:10px;')
+            input.checkbox-input(type='checkbox', name='engine', id=engine._id, value=engine._id, checked=engine.checked )
+            label(for=engine._id) #{engine.name}
+    button.btn.btn-primary(type='submit') Submit
+
+  if errors 
+    ul
+      for error in errors
+        li!= error.msg

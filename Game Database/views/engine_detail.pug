@@ -1,0 +1,24 @@
+extends layout
+
+block content
+
+  h1 Engine: #{engine.name}
+  
+  div(style='margin-left:20px;margin-top:20px')
+
+    h4 Games
+    
+    dl
+    each game in engine_games
+      dt 
+        a(href=game.url) #{game.title}
+      dd #{game.summary}
+
+    else
+      p This engine has no games.
+      
+  hr
+  p
+    a(href=engine.url+'/delete') Delete engine
+  p
+    a(href=engine.url+'/update') Update engine

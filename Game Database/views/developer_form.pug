@@ -1,0 +1,20 @@
+extends layout
+
+block content
+  h1=title
+
+  form(method='POST' action='')
+    div.form-group
+      label(for='first_name') Company name:
+      input#first_name.form-control(type='text' placeholder='Company name' name='first_name' required='true' value=(undefined===developer ? '' : developer.first_name) )
+    div.form-group
+      label(for='location_name') Location:
+      input#location_name.form-control(type='text' placeholder='Location' name='location_name' required='true' value=(undefined===developer ? '' : developer.location_name) )
+    div.form-group
+      label(for='date_of_birth') Established:
+      input#date_of_birth.form-control(type='date' name='date_of_birth' value=(undefined===developer ? '' : developer.date_of_birth) )
+    button.btn.btn-primary(type='submit') Submit
+  if errors 
+    ul
+      for error in errors
+        li!= error.msg

@@ -1,0 +1,20 @@
+extends layout
+
+block content
+  h1 Game Database
+
+  p Welcome to #[em Game Database], a very basic Express website that works as a database for games.
+
+  h1 Database dynamic content
+
+  if error
+    p Error getting dynamic content.
+  else
+    p The database has the following data:
+
+    ul
+      li #[strong Games:] !{data.game_count}
+      li #[strong Platform:] !{data.platform_count}
+      li #[strong Developers:] !{data.developer_count}
+      li #[strong Genres:] !{data.genre_count}
+      li #[strong Engines:] !{data.engine_count}

@@ -1,0 +1,24 @@
+extends layout
+
+block content
+
+  h1 Platform: #{platform.name}
+  
+  div(style='margin-left:20px;margin-top:20px')
+
+    h4 Games
+    
+    dl
+    each game in platform_games
+      dt 
+        a(href=game.url) #{game.title}
+      dd #{game.summary}
+
+    else
+      p This platform has no games
+	  
+  hr
+  p
+    a(href=platform.url+'/delete') Delete platform
+  p
+    a(href=platform.url+'/update') Update platform

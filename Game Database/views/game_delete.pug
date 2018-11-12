@@ -1,0 +1,32 @@
+extends layout
+
+block content
+
+  h1 #{title}: #{game.title}
+  p= game.lifespan
+  
+  p #[strong Developer:] 
+    a(href=game.developer.url) #{game.developer.name}
+  p #[strong Summary:] #{game.summary}
+  p #[strong Platform:] 
+    each val in game.platform
+      a(href=val.url) #{val.name}  
+  p #[strong Genre:] 
+    each val in game.genre
+      a(href=val.url) #{val.name}   
+
+  p #[strong Game Engine:] 
+    each val in game.engine
+      a(href=val.url) #{val.name}
+	  
+
+
+
+
+    p Do you really want to delete this Game?
+    
+    form(method='POST' action='')
+      div.form-group
+        input#id.form-control(type='hidden',name='id', required='true', value=game._id )
+
+      button.btn.btn-primary(type='submit') Delete
